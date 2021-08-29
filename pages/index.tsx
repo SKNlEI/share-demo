@@ -69,6 +69,7 @@ const Home: NextPage = () => {
         <Link href="/dynamic/single/[id]" as="/dynamic/single/20">单参数动态路由</Link>
         <Link href="/dynamic/more/[...id]" as="/dynamic/more/20/21">多参数动态路由</Link>
         <Link href="/demo-api">API 路由</Link>
+        <Link href="/sass-demo">sass-demo</Link>
         <Link href="/data-fetch/static-props">static-props</Link>
         <Link href="/data-fetch/server-props">server-props</Link>
         <Link href="/data-fetch/static-paths/[pid]" as="/data-fetch/static-paths/1">path1</Link>
