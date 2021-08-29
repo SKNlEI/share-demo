@@ -1,9 +1,21 @@
 import type { NextPage } from 'next'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
+  const router = useRouter()
+
+  const handleGoMore = () => {
+
+    router.push({ pathname: '/demo', query: { a: 'hahha', b: '233' } })
+    // router.push('/dynamic/single/[id]', '/dynamic/single/2')
+    // router.push('/dynamic/more/[...id]', '/dynamic/more/1/2')
+
+
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -51,6 +63,19 @@ const Home: NextPage = () => {
             </p>
           </a>
         </div>
+
+        
+        <Link href={{pathname: '/demo1',query: {a: 10, b: 20, name: 'next'},}}>demo1</Link>
+        <Link href="/dynamic/single/[id]" as="/dynamic/single/20">单参数动态路由</Link>
+        <Link href="/dynamic/more/[...id]" as="/dynamic/more/20/21">多参数动态路由</Link>
+        <Link href="/demo-api">API 路由</Link>
+        <Link href="/data-fetch/static-props">static-props</Link>
+        <Link href="/data-fetch/server-props">server-props</Link>
+        <Link href="/data-fetch/static-paths/[pid]" as="/data-fetch/static-paths/1">path1</Link>
+        <Link href="/data-fetch/static-paths/[pid]" as="/data-fetch/static-paths/2">path2</Link>
+        <Link href="/data-fetch/static-paths/[pid]" as="/data-fetch/static-paths/3">path3</Link>
+
+        <button onClick={handleGoMore}>多参数动态路由</button>
       </main>
 
       <footer className={styles.footer}>
