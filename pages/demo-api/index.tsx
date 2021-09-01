@@ -14,7 +14,7 @@ const DemoApi = () => {
   }, [])
 
   return (
-    <div>
+    <div className="DemoApi">
       <button>点击获取name</button>
       <div>name:{name}</div>
     </div>

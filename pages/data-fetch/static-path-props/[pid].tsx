@@ -16,6 +16,7 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 }
 
 export const getStaticProps: GetStaticProps  = async (ctx) => {
+  console.log('间隔20s重新构建这个页面呀')
   let data = { title: '' }
   if (ctx.params?.pid === '1') {
     data = { title: '我是第一页数据' }
@@ -27,8 +28,8 @@ export const getStaticProps: GetStaticProps  = async (ctx) => {
 
   return {
     props: { data },
-    // 开启 ISR，最多每10s重新生成一次页面
-    revalidate: 10
+    // 开启 ISR，最多每20s重新生成一次页面
+    revalidate: 20
   }
 }
 

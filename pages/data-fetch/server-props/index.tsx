@@ -18,6 +18,7 @@ const ServerProps = ({ data }: { data: any[] }) => {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const url = 'https://mcs-mimp-web.sf-express.com/mcs-mimp/config/frontLinkList'
   const res = await Axios.post(url, { version: '1.0' })
+  console.log('getServerSideProps========')
   return { props: { data: res.data.obj.linkConfigList } }
 }
 

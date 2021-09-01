@@ -68,6 +68,7 @@ const Home: NextPage = () => {
         <Link href={{pathname: '/demo1',query: {a: 10, b: 20, name: 'next'},}}>demo1</Link>
         <Link href="/dynamic/single/[id]" as="/dynamic/single/20">单参数动态路由</Link>
         <Link href="/dynamic/more/[...id]" as="/dynamic/more/20/21">多参数动态路由</Link>
+        <Link href="/dynamic/song" >song page</Link>
         <Link href="/demo-api">API 路由</Link>
         <Link href="/sass-demo">sass-demo</Link>
         <Link href="/data-fetch/static-props">static-props</Link>
@@ -76,6 +77,8 @@ const Home: NextPage = () => {
         <Link href="/data-fetch/static-paths/[pid]" as="/data-fetch/static-paths/2">path2</Link>
         <Link href="/data-fetch/static-paths/[pid]" as="/data-fetch/static-paths/3">path3</Link>
 
+        <Link href="/data-fetch/static-path-props/[pid]" as="/data-fetch/static-path-props/1">static-path-props</Link>
+        <Link href="/data-fetch/static-props1">server-props1111</Link>
         <button onClick={handleGoMore}>多参数动态路由</button>
       </main>
 
