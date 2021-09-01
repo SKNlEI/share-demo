@@ -1,9 +1,10 @@
 import type { NextPage } from 'next'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { Button, Row, Col } from 'antd'
+import NavLink from '../components/NavLink/NavLink'
 
 const Home: NextPage = () => {
   const router = useRouter()
@@ -29,56 +30,22 @@ const Home: NextPage = () => {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-
+        <Button>测试</Button>
         
-        <Link href={{pathname: '/demo1',query: {a: 10, b: 20, name: 'next'},}}>demo1</Link>
-        <Link href="/dynamic/single/[id]" as="/dynamic/single/20">单参数动态路由</Link>
-        <Link href="/dynamic/more/[...id]" as="/dynamic/more/20/21">多参数动态路由</Link>
-        <Link href="/dynamic/song" >song page</Link>
-        <Link href="/demo-api">API 路由</Link>
-        <Link href="/sass-demo">sass-demo</Link>
-        <Link href="/data-fetch/static-props">static-props</Link>
-        <Link href="/data-fetch/server-props">server-props</Link>
-        <Link href="/data-fetch/static-paths/[pid]" as="/data-fetch/static-paths/1">path1</Link>
-        <Link href="/data-fetch/static-paths/[pid]" as="/data-fetch/static-paths/2">path2</Link>
-        <Link href="/data-fetch/static-paths/[pid]" as="/data-fetch/static-paths/3">path3</Link>
+        <NavLink href={{pathname: '/demo1',query: {a: 10, b: 20, name: 'next'}}} text="路由传参" />
+        <NavLink href="/dynamic/single/[id]" as="/dynamic/single/20" text="单参数动态路由" />
+        <NavLink href="/dynamic/more/[...id]" as="/dynamic/more/20/21" text="多参数动态路由" />
+        <NavLink href="/dynamic/song" text="跳转song - page 动态api路由" />
+        <NavLink href="/demo-api" text="测试API路由" />
+        <NavLink href="/style-page/sass-demo" text="sass 样式测试" />
+        <NavLink href="/data-fetch/static-props" text="服务端静态生成" />
+        <NavLink href="/data-fetch/server-props" text="服务端动态生成" />
+        <NavLink href="/data-fetch/client-render" text="客户端渲染" />
+        <NavLink href="/data-fetch/static-paths/[pid]" as="/data-fetch/static-paths/1" text="指定动态路由生成-1" />
+        <NavLink href="/data-fetch/static-paths/[pid]" as="/data-fetch/static-paths/2" text="指定动态路由生成-2" />
+        <NavLink href="/data-fetch/static-paths/[pid]" as="/data-fetch/static-paths/3" text="指定动态路由生成-3"/>
 
-        <Link href="/data-fetch/static-path-props/[pid]" as="/data-fetch/static-path-props/1">static-path-props</Link>
-        <Link href="/data-fetch/static-props1">server-props1111</Link>
+        <NavLink href="/data-fetch/static-path-props/[pid]" as="/data-fetch/static-path-props/1" text="static-path-props" />
         <button onClick={handleGoMore}>多参数动态路由</button>
       </main>
 

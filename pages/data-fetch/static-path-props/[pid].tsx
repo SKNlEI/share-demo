@@ -7,8 +7,6 @@ const StaticPaths = ({ data }: { data: any }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  console.log('-------------', ctx.locales)
-  console.log('-------------', ctx.defaultLocale)
   return {
     paths: [{ params: { pid: '1' } }, { params: { pid: '2' } }],
     fallback: 'blocking',

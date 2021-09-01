@@ -1,24 +1,17 @@
-const withLess = require("next-with-less")
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
-/** @type {import('next').NextConfig} */
-module.exports = withLess({
+const withLess = require("next-with-less")
+const config = withLess({
   reactStrictMode: true,
-  experimental: {
-    esmExternals: true
-  },
   images: {
     domains: ['dfzximg02.dftoutiao.com']
-  },
-  async redirects() {
-    return [
-      {
-        source: '/demo1',
-        destination: '/server-props',
-        permanent: false
-      }
-    ]
   }
 })
+
+/** @type {import('next').NextConfig} */
+module.exports = withBundleAnalyzer(config)
 
 
 // {
@@ -34,21 +27,21 @@ module.exports = withLess({
 // }
 
 
-withLess({
-  reactStrictMode: true,
-  experimental: {
-    esmExternals: true
-  },
-  images: {
-    domains: ['dfzximg02.dftoutiao.com']
-  },
-  async redirects() {
-    return [
-      {
-        source: '/demo1',
-        destination: '/server-props',
-        permanent: false
-      }
-    ]
-  }
-})
+// withLess({
+//   reactStrictMode: true,
+//   experimental: {
+//     esmExternals: true
+//   },
+//   images: {
+//     domains: ['dfzximg02.dftoutiao.com']
+//   },
+//   async redirects() {
+//     return [
+//       {
+//         source: '/demo1',
+//         destination: '/server-props',
+//         permanent: false
+//       }
+//     ]
+//   }
+// })

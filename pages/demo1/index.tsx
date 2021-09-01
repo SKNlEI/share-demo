@@ -6,9 +6,14 @@ const Demo1 = () => {
   console.log('参数值', router.query)
 
   const handleGo = () => {
-    router.push({ pathname: '/', query: { from: 'demo1' } })
+    router.back()
   }
-  return <button onClick={handleGo}>点我跳转</button>
+  return (
+    <div>
+      <button onClick={handleGo}>点我跳转</button>
+      <div>参数：{JSON.stringify(router.query)}</div>
+    </div>
+  )
 }
 
 export default Demo1

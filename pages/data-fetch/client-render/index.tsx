@@ -1,12 +1,33 @@
+import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
-import React from 'react'
-import { GetServerSideProps } from 'next'
-import { EyeOutlined, LikeOutlined, MessageOutlined} from '@ant-design/icons'
+import { Spin  } from 'antd'
 import { getDateDiff } from '../../../utils/tools'
+import { EyeOutlined, LikeOutlined, MessageOutlined} from '@ant-design/icons'
 import styles from './index.module.less'
 
-const ServerProps = ({ data }: { data: any[] }) => {
-  console.log(data)
+const ClientRender = () => {
+  const [data, setData] = useState<any[]>([])
+  
+  useEffect(() => {
+    Axios.post('/api/article/recommend_all_feed').then(res => {
+      return res.data
+    }).then(res => {
+      if (res.err_msg === 'success') {
+        setData(res.data)
+      }
+    }).catch(e => {
+      console.log(e)
+    })
+  }, [])
+
+  if (data.length === 0) {
+    return (
+      <div className="Spin">
+        <Spin size="large" />
+      </div>
+    )
+  }
+
   return (
     <div className={styles.ServerProps}>
       <h3>文章列表</h3>
@@ -39,17 +60,4 @@ const ServerProps = ({ data }: { data: any[] }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  console.log('getServerSideProps=====SSR')
-  const url = 'https://api.juejin.cn/recommend_api/v1/article/recommend_all_feed?aid=2608&uuid=6898701577642821133'
-  const res = await Axios.post(url, {})
-
-  let data: any = []
-  if (res.data.err_msg === 'success') {
-    data = res.data.data
-  }
-  return { props: { data } }
-}
-
-
-export default ServerProps
+export default ClientRender
