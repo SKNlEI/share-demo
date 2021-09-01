@@ -1,15 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import fs from 'fs'
-
-// type Data = {
-//   name: string
-// }
+import path from 'path'
 
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
 ) {
-  const news = fs.readFileSync(process.cwd()+ '/json/toutiao.json', 'utf-8')
+  const pathJson = path.resolve(process.cwd(), 'json/toutiao.json')
+  const news = fs.readFileSync(pathJson, 'utf-8')
   const uniquekey = req.query.id || ''
   const formateNews = JSON.parse(news)
   const result = formateNews.result.data.find((item: any) => item.uniquekey === uniquekey)

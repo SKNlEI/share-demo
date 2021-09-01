@@ -1,33 +1,52 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
+import Image from 'next/image'
+import fs from 'fs'
+import path from 'path'
 
 const StaticPaths = ({ data }: { data: any }) => {
   return (
-    <h3>{data.title ? data.title : '没有预渲染'}</h3>
+    <div style={{ padding: '30px 150px' }}>
+      <h3>{data.title}</h3>
+      <div style={{ width: '300px' }}>
+        <Image
+          // layout="fill"
+          width="200"
+          height="300"
+          placeholder="blur"
+          blurDataURL={'loading'}
+          src={data.thumbnail_pic_s} alt=""
+        />
+      </div>
+    </div>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
+  const pathResult = path.resolve(process.cwd(), 'json/toutiao.json')
+  const data = fs.readFileSync(pathResult, 'utf-8')
+  const result = JSON.parse(data)
+  const pidList = result.result.data.map((v: any) => ({ params: { pid: v.uniquekey } }))
   return {
-    paths: [{ params: { pid: '1' } }, { params: { pid: '2' } }],
+    paths: pidList,
     fallback: 'blocking',
   }
 }
 
 export const getStaticProps: GetStaticProps  = async (ctx) => {
-  console.log('间隔20s重新构建这个页面呀')
-  let data = { title: '' }
-  if (ctx.params?.pid === '1') {
-    data = { title: '我是第一页数据' }
-  }
+  console.log('间隔40s重新构建这个页面呀')
+  const pid = ctx.params?.pid || ''
 
-  if (ctx.params?.pid === '2') {
-    data = { title: '我是第二页数据' }
-  }
+  const pathResult = path.resolve(process.cwd(), 'json/toutiao.json')
+  const data = fs.readFileSync(pathResult, 'utf-8')
+
+  const result = JSON.parse(data)
+
+  const item = result.result.data.find((v: any) => v.uniquekey === pid)
 
   return {
-    props: { data },
-    // 开启 ISR，最多每20s重新生成一次页面
-    revalidate: 20
+    props: { data: item},
+    // 开启 ISR，最多每40s重新生成一次页面
+    revalidate: 40
   }
 }
 

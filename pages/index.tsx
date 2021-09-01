@@ -45,7 +45,8 @@ const Home: NextPage = () => {
         <NavLink href="/data-fetch/static-paths/[pid]" as="/data-fetch/static-paths/2" text="指定动态路由生成-2" />
         <NavLink href="/data-fetch/static-paths/[pid]" as="/data-fetch/static-paths/3" text="指定动态路由生成-3"/>
 
-        <NavLink href="/data-fetch/static-path-props/[pid]" as="/data-fetch/static-path-props/1" text="static-path-props" />
+        <NavLink href="/data-fetch/static-path-props" text="static-path-props" />
+        <NavLink href="/mdx" text="md文档" />
         <button onClick={handleGoMore}>多参数动态路由</button>
       </main>
 
